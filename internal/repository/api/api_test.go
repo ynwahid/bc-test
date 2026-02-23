@@ -4,31 +4,12 @@ import (
 	"context"
 	"fmt"
 	"testing"
-	"time"
 
 	"github.com/stretchr/testify/require"
 	"github.com/ynwahid/bc-test/internal/repository/api"
 )
 
 func TestAPIRepository_GetAirAsiaFlights(t *testing.T) {
-	const timeLayout = `2006-01-02T15:04:05-07:00`
-	departureQZ520, err := time.Parse(timeLayout, "2025-12-15T04:45:00+07:00")
-	require.NoError(t, err)
-	arriveQZ520, err := time.Parse(timeLayout, "2025-12-15T07:25:00+08:00")
-	require.NoError(t, err)
-	departureQZ524, err := time.Parse(timeLayout, "2025-12-15T10:00:00+07:00")
-	require.NoError(t, err)
-	arriveQZ524, err := time.Parse(timeLayout, "2025-12-15T12:45:00+08:00")
-	require.NoError(t, err)
-	departureQZ532, err := time.Parse(timeLayout, "2025-12-15T19:30:00+07:00")
-	require.NoError(t, err)
-	arriveQZ532, err := time.Parse(timeLayout, "2025-12-15T22:10:00+08:00")
-	require.NoError(t, err)
-	departureQZ7250, err := time.Parse(timeLayout, "2025-12-15T15:15:00+07:00")
-	require.NoError(t, err)
-	arriveQZ7250, err := time.Parse(timeLayout, "2025-12-15T20:35:00+08:00")
-	require.NoError(t, err)
-
 	tests := []struct {
 		name          string
 		origin        string
@@ -45,14 +26,14 @@ func TestAPIRepository_GetAirAsiaFlights(t *testing.T) {
 			want: api.AirAsiaResponse{
 				Status: "ok",
 				Flights: []struct {
-					FlightCode    string    "json:\"flight_code\""
-					Airline       string    "json:\"airline\""
-					FromAirport   string    "json:\"from_airport\""
-					ToAirport     string    "json:\"to_airport\""
-					DepartTime    time.Time "json:\"depart_time\""
-					ArriveTime    time.Time "json:\"arrive_time\""
-					DurationHours float64   "json:\"duration_hours\""
-					DirectFlight  bool      "json:\"direct_flight\""
+					FlightCode    string  "json:\"flight_code\""
+					Airline       string  "json:\"airline\""
+					FromAirport   string  "json:\"from_airport\""
+					ToAirport     string  "json:\"to_airport\""
+					DepartTime    string  "json:\"depart_time\""
+					ArriveTime    string  "json:\"arrive_time\""
+					DurationHours float64 "json:\"duration_hours\""
+					DirectFlight  bool    "json:\"direct_flight\""
 					Stops         []struct {
 						Airport         string "json:\"airport\""
 						WaitTimeMinutes int    "json:\"wait_time_minutes\""
@@ -67,8 +48,8 @@ func TestAPIRepository_GetAirAsiaFlights(t *testing.T) {
 						Airline:       "AirAsia",
 						FromAirport:   "CGK",
 						ToAirport:     "DPS",
-						DepartTime:    departureQZ520,
-						ArriveTime:    arriveQZ520,
+						DepartTime:    "2025-12-15T04:45:00+07:00",
+						ArriveTime:    "2025-12-15T07:25:00+08:00",
 						DurationHours: 1.67,
 						DirectFlight:  true,
 						PriceIDR:      650000,
@@ -81,8 +62,8 @@ func TestAPIRepository_GetAirAsiaFlights(t *testing.T) {
 						Airline:       "AirAsia",
 						FromAirport:   "CGK",
 						ToAirport:     "DPS",
-						DepartTime:    departureQZ524,
-						ArriveTime:    arriveQZ524,
+						DepartTime:    "2025-12-15T10:00:00+07:00",
+						ArriveTime:    "2025-12-15T12:45:00+08:00",
 						DurationHours: 1.75,
 						DirectFlight:  true,
 						PriceIDR:      720000,
@@ -95,8 +76,8 @@ func TestAPIRepository_GetAirAsiaFlights(t *testing.T) {
 						Airline:       "AirAsia",
 						FromAirport:   "CGK",
 						ToAirport:     "DPS",
-						DepartTime:    departureQZ532,
-						ArriveTime:    arriveQZ532,
+						DepartTime:    "2025-12-15T19:30:00+07:00",
+						ArriveTime:    "2025-12-15T22:10:00+08:00",
 						DurationHours: 1.67,
 						DirectFlight:  true,
 						PriceIDR:      595000,
@@ -109,8 +90,8 @@ func TestAPIRepository_GetAirAsiaFlights(t *testing.T) {
 						Airline:       "AirAsia",
 						FromAirport:   "CGK",
 						ToAirport:     "DPS",
-						DepartTime:    departureQZ7250,
-						ArriveTime:    arriveQZ7250,
+						DepartTime:    "2025-12-15T15:15:00+07:00",
+						ArriveTime:    "2025-12-15T20:35:00+08:00",
 						DurationHours: 4.33,
 						DirectFlight:  false,
 						Stops: []struct {
@@ -320,24 +301,6 @@ func TestAPIRepository_GetBatikAirFlights(t *testing.T) {
 }
 
 func TestAPIRepository_GetGarudaIndonesiaFlights(t *testing.T) {
-	const timeLayout = `2006-01-02T15:04:05-07:00`
-	departurGA332, err := time.Parse(timeLayout, "2025-12-15T17:15:00+07:00")
-	require.NoError(t, err)
-	arriveGA332, err := time.Parse(timeLayout, "2025-12-15T18:45:00+08:00")
-	require.NoError(t, err)
-	departurGA315, err := time.Parse(timeLayout, "2025-12-15T14:00:00+07:00")
-	require.NoError(t, err)
-	arriveGA315, err := time.Parse(timeLayout, "2025-12-15T15:30:00+07:00")
-	require.NoError(t, err)
-	departurGA410, err := time.Parse(timeLayout, "2025-12-15T09:30:00+07:00")
-	require.NoError(t, err)
-	arriveGA410, err := time.Parse(timeLayout, "2025-12-15T12:25:00+08:00")
-	require.NoError(t, err)
-	departurGA400, err := time.Parse(timeLayout, "2025-12-15T06:00:00+07:00")
-	require.NoError(t, err)
-	arriveGA400, err := time.Parse(timeLayout, "2025-12-15T08:50:00+08:00")
-	require.NoError(t, err)
-
 	tests := []struct {
 		name          string
 		origin        string
@@ -358,16 +321,16 @@ func TestAPIRepository_GetGarudaIndonesiaFlights(t *testing.T) {
 					Airline     string "json:\"airline\""
 					AirlineCode string "json:\"airline_code\""
 					Departure   struct {
-						Airport  string    "json:\"airport\""
-						City     string    "json:\"city\""
-						Time     time.Time "json:\"time\""
-						Terminal string    "json:\"terminal\""
+						Airport  string "json:\"airport\""
+						City     string "json:\"city\""
+						Time     string "json:\"time\""
+						Terminal string "json:\"terminal\""
 					} "json:\"departure\""
 					Arrival struct {
-						Airport  string    "json:\"airport\""
-						City     string    "json:\"city\""
-						Time     time.Time "json:\"time\""
-						Terminal string    "json:\"terminal\""
+						Airport  string "json:\"airport\""
+						City     string "json:\"city\""
+						Time     string "json:\"time\""
+						Terminal string "json:\"terminal\""
 					} "json:\"arrival\""
 					DurationMinutes int    "json:\"duration_minutes\""
 					Stops           int    "json:\"stops\""
@@ -379,12 +342,12 @@ func TestAPIRepository_GetGarudaIndonesiaFlights(t *testing.T) {
 					Segments []struct {
 						FlightNumber string "json:\"flight_number\""
 						Departure    struct {
-							Airport string    "json:\"airport\""
-							Time    time.Time "json:\"time\""
+							Airport string "json:\"airport\""
+							Time    string "json:\"time\""
 						} "json:\"departure\""
 						Arrival struct {
-							Airport string    "json:\"airport\""
-							Time    time.Time "json:\"time\""
+							Airport string "json:\"airport\""
+							Time    string "json:\"time\""
 						} "json:\"arrival\""
 						DurationMinutes int "json:\"duration_minutes\""
 						LayoverMinutes  int "json:\"layover_minutes,omitempty\""
@@ -402,25 +365,25 @@ func TestAPIRepository_GetGarudaIndonesiaFlights(t *testing.T) {
 						Airline:     "Garuda Indonesia",
 						AirlineCode: "GA",
 						Departure: struct {
-							Airport  string    "json:\"airport\""
-							City     string    "json:\"city\""
-							Time     time.Time "json:\"time\""
-							Terminal string    "json:\"terminal\""
+							Airport  string "json:\"airport\""
+							City     string "json:\"city\""
+							Time     string "json:\"time\""
+							Terminal string "json:\"terminal\""
 						}{
 							Airport:  "CGK",
 							City:     "Jakarta",
-							Time:     departurGA400,
+							Time:     "2025-12-15T06:00:00+07:00",
 							Terminal: "3",
 						},
 						Arrival: struct {
-							Airport  string    "json:\"airport\""
-							City     string    "json:\"city\""
-							Time     time.Time "json:\"time\""
-							Terminal string    "json:\"terminal\""
+							Airport  string "json:\"airport\""
+							City     string "json:\"city\""
+							Time     string "json:\"time\""
+							Terminal string "json:\"terminal\""
 						}{
 							Airport:  "DPS",
 							City:     "Denpasar",
-							Time:     arriveGA400,
+							Time:     "2025-12-15T08:50:00+08:00",
 							Terminal: "I",
 						},
 						DurationMinutes: 110,
@@ -453,25 +416,25 @@ func TestAPIRepository_GetGarudaIndonesiaFlights(t *testing.T) {
 						Airline:     "Garuda Indonesia",
 						AirlineCode: "GA",
 						Departure: struct {
-							Airport  string    "json:\"airport\""
-							City     string    "json:\"city\""
-							Time     time.Time "json:\"time\""
-							Terminal string    "json:\"terminal\""
+							Airport  string "json:\"airport\""
+							City     string "json:\"city\""
+							Time     string "json:\"time\""
+							Terminal string "json:\"terminal\""
 						}{
 							Airport:  "CGK",
 							City:     "Jakarta",
-							Time:     departurGA410,
+							Time:     "2025-12-15T09:30:00+07:00",
 							Terminal: "3",
 						},
 						Arrival: struct {
-							Airport  string    "json:\"airport\""
-							City     string    "json:\"city\""
-							Time     time.Time "json:\"time\""
-							Terminal string    "json:\"terminal\""
+							Airport  string "json:\"airport\""
+							City     string "json:\"city\""
+							Time     string "json:\"time\""
+							Terminal string "json:\"terminal\""
 						}{
 							Airport:  "DPS",
 							City:     "Denpasar",
-							Time:     arriveGA410,
+							Time:     "2025-12-15T12:25:00+08:00",
 							Terminal: "I",
 						},
 						DurationMinutes: 115,
@@ -505,25 +468,25 @@ func TestAPIRepository_GetGarudaIndonesiaFlights(t *testing.T) {
 						Airline:     "Garuda Indonesia",
 						AirlineCode: "GA",
 						Departure: struct {
-							Airport  string    "json:\"airport\""
-							City     string    "json:\"city\""
-							Time     time.Time "json:\"time\""
-							Terminal string    "json:\"terminal\""
+							Airport  string "json:\"airport\""
+							City     string "json:\"city\""
+							Time     string "json:\"time\""
+							Terminal string "json:\"terminal\""
 						}{
 							Airport:  "CGK",
 							City:     "Jakarta",
-							Time:     departurGA315,
+							Time:     "2025-12-15T14:00:00+07:00",
 							Terminal: "3",
 						},
 						Arrival: struct {
-							Airport  string    "json:\"airport\""
-							City     string    "json:\"city\""
-							Time     time.Time "json:\"time\""
-							Terminal string    "json:\"terminal\""
+							Airport  string "json:\"airport\""
+							City     string "json:\"city\""
+							Time     string "json:\"time\""
+							Terminal string "json:\"terminal\""
 						}{
 							Airport:  "SUB",
 							City:     "Surabaya",
-							Time:     arriveGA315,
+							Time:     "2025-12-15T15:30:00+07:00",
 							Terminal: "2",
 						},
 						DurationMinutes: 90,
@@ -539,12 +502,12 @@ func TestAPIRepository_GetGarudaIndonesiaFlights(t *testing.T) {
 						Segments: []struct {
 							FlightNumber string "json:\"flight_number\""
 							Departure    struct {
-								Airport string    "json:\"airport\""
-								Time    time.Time "json:\"time\""
+								Airport string "json:\"airport\""
+								Time    string "json:\"time\""
 							} "json:\"departure\""
 							Arrival struct {
-								Airport string    "json:\"airport\""
-								Time    time.Time "json:\"time\""
+								Airport string "json:\"airport\""
+								Time    string "json:\"time\""
 							} "json:\"arrival\""
 							DurationMinutes int "json:\"duration_minutes\""
 							LayoverMinutes  int "json:\"layover_minutes,omitempty\""
@@ -552,36 +515,36 @@ func TestAPIRepository_GetGarudaIndonesiaFlights(t *testing.T) {
 							{
 								FlightNumber: "GA315",
 								Departure: struct {
-									Airport string    "json:\"airport\""
-									Time    time.Time "json:\"time\""
+									Airport string "json:\"airport\""
+									Time    string "json:\"time\""
 								}{
 									Airport: "CGK",
-									Time:    departurGA315,
+									Time:    "2025-12-15T14:00:00+07:00",
 								},
 								Arrival: struct {
-									Airport string    "json:\"airport\""
-									Time    time.Time "json:\"time\""
+									Airport string "json:\"airport\""
+									Time    string "json:\"time\""
 								}{
 									Airport: "SUB",
-									Time:    arriveGA315,
+									Time:    "2025-12-15T15:30:00+07:00",
 								},
 								DurationMinutes: 90,
 							},
 							{
 								FlightNumber: "GA332",
 								Departure: struct {
-									Airport string    "json:\"airport\""
-									Time    time.Time "json:\"time\""
+									Airport string "json:\"airport\""
+									Time    string "json:\"time\""
 								}{
 									Airport: "SUB",
-									Time:    departurGA332,
+									Time:    "2025-12-15T17:15:00+07:00",
 								},
 								Arrival: struct {
-									Airport string    "json:\"airport\""
-									Time    time.Time "json:\"time\""
+									Airport string "json:\"airport\""
+									Time    string "json:\"time\""
 								}{
 									Airport: "DPS",
-									Time:    arriveGA332,
+									Time:    "2025-12-15T18:45:00+08:00",
 								},
 								DurationMinutes: 90,
 								LayoverMinutes:  105,

@@ -1,20 +1,18 @@
 package api
 
-import "time"
-
 type APIRepository struct{}
 
 type AirAsiaResponse struct {
 	Status  string `json:"status"`
 	Flights []struct {
-		FlightCode    string    `json:"flight_code"`
-		Airline       string    `json:"airline"`
-		FromAirport   string    `json:"from_airport"`
-		ToAirport     string    `json:"to_airport"`
-		DepartTime    time.Time `json:"depart_time"`
-		ArriveTime    time.Time `json:"arrive_time"`
-		DurationHours float64   `json:"duration_hours"`
-		DirectFlight  bool      `json:"direct_flight"`
+		FlightCode    string  `json:"flight_code"`
+		Airline       string  `json:"airline"`
+		FromAirport   string  `json:"from_airport"`
+		ToAirport     string  `json:"to_airport"`
+		DepartTime    string  `json:"depart_time"`
+		ArriveTime    string  `json:"arrive_time"`
+		DurationHours float64 `json:"duration_hours"`
+		DirectFlight  bool    `json:"direct_flight"`
 		Stops         []struct {
 			Airport         string `json:"airport"`
 			WaitTimeMinutes int    `json:"wait_time_minutes"`
@@ -64,16 +62,16 @@ type GarudaIndonesiaResponse struct {
 		Airline     string `json:"airline"`
 		AirlineCode string `json:"airline_code"`
 		Departure   struct {
-			Airport  string    `json:"airport"`
-			City     string    `json:"city"`
-			Time     time.Time `json:"time"`
-			Terminal string    `json:"terminal"`
+			Airport  string `json:"airport"`
+			City     string `json:"city"`
+			Time     string `json:"time"`
+			Terminal string `json:"terminal"`
 		} `json:"departure"`
 		Arrival struct {
-			Airport  string    `json:"airport"`
-			City     string    `json:"city"`
-			Time     time.Time `json:"time"`
-			Terminal string    `json:"terminal"`
+			Airport  string `json:"airport"`
+			City     string `json:"city"`
+			Time     string `json:"time"`
+			Terminal string `json:"terminal"`
 		} `json:"arrival"`
 		DurationMinutes int    `json:"duration_minutes"`
 		Stops           int    `json:"stops"`
@@ -85,12 +83,12 @@ type GarudaIndonesiaResponse struct {
 		Segments []struct {
 			FlightNumber string `json:"flight_number"`
 			Departure    struct {
-				Airport string    `json:"airport"`
-				Time    time.Time `json:"time"`
+				Airport string `json:"airport"`
+				Time    string `json:"time"`
 			} `json:"departure"`
 			Arrival struct {
-				Airport string    `json:"airport"`
-				Time    time.Time `json:"time"`
+				Airport string `json:"airport"`
+				Time    string `json:"time"`
 			} `json:"arrival"`
 			DurationMinutes int `json:"duration_minutes"`
 			LayoverMinutes  int `json:"layover_minutes,omitempty"`
