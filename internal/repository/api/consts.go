@@ -66,11 +66,11 @@ const (
       "cabin_class": "economy",
       "baggage_note": "Cabin baggage only, checked bags additional fee"
     }
-  ])
+  ]
 }
 `
 
-	batikMockResponse = `{
+	batikAirMockResponse = `{
   "code": 200,
   "message": "OK",
   "results": [
@@ -159,7 +159,7 @@ const (
 }
 `
 
-	garudaMockResponse = `{
+	garudaIndonesiaMockResponse = `{
   "status": "success",
   "flights": [
     {
@@ -294,7 +294,7 @@ const (
 }
 `
 
-	lionMockResponse = `{
+	lionAirMockResponse = `{
   "success": true,
   "data": {
     "available_flights": [
