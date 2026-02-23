@@ -1,11 +1,11 @@
-package api
+package provider
 
 import (
 	"context"
 	"encoding/json"
 )
 
-func (repo *APIRepository) GetAirAsiaFlights(ctx context.Context, origin, destination, departureDate string) (AirAsiaResponse, error) {
+func (repo *ProviderRepository) GetAirAsiaFlights(ctx context.Context, origin, destination, departureDate string) (AirAsiaResponse, error) {
 	var response AirAsiaResponse
 	err := json.Unmarshal([]byte(airAsiaMockResponse), &response)
 	if err != nil {
@@ -14,7 +14,7 @@ func (repo *APIRepository) GetAirAsiaFlights(ctx context.Context, origin, destin
 	return response, nil
 }
 
-func (repo *APIRepository) GetBatikAirFlights(ctx context.Context, origin, destination, departureDate string) (BatikAirResponse, error) {
+func (repo *ProviderRepository) GetBatikAirFlights(ctx context.Context, origin, destination, departureDate string) (BatikAirResponse, error) {
 	var response BatikAirResponse
 	err := json.Unmarshal([]byte(batikAirMockResponse), &response)
 	if err != nil {
@@ -23,7 +23,7 @@ func (repo *APIRepository) GetBatikAirFlights(ctx context.Context, origin, desti
 	return response, nil
 }
 
-func (repo *APIRepository) GetGarudaIndonesiaFlights(ctx context.Context, origin, destination, departureDate string) (GarudaIndonesiaResponse, error) {
+func (repo *ProviderRepository) GetGarudaIndonesiaFlights(ctx context.Context, origin, destination, departureDate string) (GarudaIndonesiaResponse, error) {
 	var response GarudaIndonesiaResponse
 	err := json.Unmarshal([]byte(garudaIndonesiaMockResponse), &response)
 	if err != nil {
@@ -32,7 +32,7 @@ func (repo *APIRepository) GetGarudaIndonesiaFlights(ctx context.Context, origin
 	return response, nil
 }
 
-func (repo *APIRepository) GetLionAirFlights(ctx context.Context, origin, destination, departureDate string) (LionAirResponse, error) {
+func (repo *ProviderRepository) GetLionAirFlights(ctx context.Context, origin, destination, departureDate string) (LionAirResponse, error) {
 	var response LionAirResponse
 	err := json.Unmarshal([]byte(lionAirMockResponse), &response)
 	if err != nil {

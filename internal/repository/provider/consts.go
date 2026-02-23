@@ -1,4 +1,4 @@
-package api
+package provider
 
 const (
 	airAsiaMockResponse = `{

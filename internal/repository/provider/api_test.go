@@ -1,4 +1,4 @@
-package api_test
+package provider
 
 import (
 	"context"
@@ -6,7 +6,6 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"github.com/ynwahid/bc-test/internal/repository/api"
 )
 
 func TestAPIRepository_GetAirAsiaFlights(t *testing.T) {
@@ -15,7 +14,7 @@ func TestAPIRepository_GetAirAsiaFlights(t *testing.T) {
 		origin        string
 		destination   string
 		departureDate string
-		want          api.AirAsiaResponse
+		want          AirAsiaResponse
 		wantErr       bool
 	}{
 		{
@@ -23,7 +22,7 @@ func TestAPIRepository_GetAirAsiaFlights(t *testing.T) {
 			origin:        "CGK",
 			destination:   "DPS",
 			departureDate: "2025-12-15",
-			want: api.AirAsiaResponse{
+			want: AirAsiaResponse{
 				Status: "ok",
 				Flights: []struct {
 					FlightCode    string  "json:\"flight_code\""
@@ -115,7 +114,7 @@ func TestAPIRepository_GetAirAsiaFlights(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			repo := api.NewAPIRepository()
+			repo := NewAPIRepository()
 			got, err := repo.GetAirAsiaFlights(
 				context.Background(),
 				test.origin,
@@ -138,7 +137,7 @@ func TestAPIRepository_GetBatikAirFlights(t *testing.T) {
 		origin        string
 		destination   string
 		departureDate string
-		want          api.BatikAirResponse
+		want          BatikAirResponse
 		wantErr       bool
 	}{
 		{
@@ -146,7 +145,7 @@ func TestAPIRepository_GetBatikAirFlights(t *testing.T) {
 			origin:        "CGK",
 			destination:   "DPS",
 			departureDate: "2025-12-15",
-			want: api.BatikAirResponse{
+			want: BatikAirResponse{
 				Code:    200,
 				Message: "OK",
 				Results: []struct {
@@ -282,7 +281,7 @@ func TestAPIRepository_GetBatikAirFlights(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			repo := api.NewAPIRepository()
+			repo := NewAPIRepository()
 			got, err := repo.GetBatikAirFlights(
 				context.Background(),
 				test.origin,
@@ -306,7 +305,7 @@ func TestAPIRepository_GetGarudaIndonesiaFlights(t *testing.T) {
 		origin        string
 		destination   string
 		departureDate string
-		want          api.GarudaIndonesiaResponse
+		want          GarudaIndonesiaResponse
 		wantErr       bool
 	}{
 		{
@@ -314,7 +313,7 @@ func TestAPIRepository_GetGarudaIndonesiaFlights(t *testing.T) {
 			origin:        "CGK",
 			destination:   "DPS",
 			departureDate: "2025-12-15",
-			want: api.GarudaIndonesiaResponse{
+			want: GarudaIndonesiaResponse{
 				Status: "success",
 				Flights: []struct {
 					FlightID    string "json:\"flight_id\""
@@ -567,7 +566,7 @@ func TestAPIRepository_GetGarudaIndonesiaFlights(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			repo := api.NewAPIRepository()
+			repo := NewAPIRepository()
 			got, err := repo.GetGarudaIndonesiaFlights(
 				context.Background(),
 				test.origin,
@@ -590,7 +589,7 @@ func TestAPIRepository_GetLionAirFlights(t *testing.T) {
 		origin        string
 		destination   string
 		departureDate string
-		want          api.LionAirResponse
+		want          LionAirResponse
 		wantErr       bool
 	}{
 		{
@@ -598,7 +597,7 @@ func TestAPIRepository_GetLionAirFlights(t *testing.T) {
 			origin:        "CGK",
 			destination:   "DPS",
 			departureDate: "2025-12-15",
-			want: api.LionAirResponse{
+			want: LionAirResponse{
 				Success: true,
 				Data: struct {
 					AvailableFlights []struct {
@@ -963,7 +962,7 @@ func TestAPIRepository_GetLionAirFlights(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			repo := api.NewAPIRepository()
+			repo := NewAPIRepository()
 			got, err := repo.GetLionAirFlights(
 				context.Background(),
 				test.origin,

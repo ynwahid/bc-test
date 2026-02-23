@@ -1,7 +1,7 @@
 package provider
 
-func NewProviderService(api ProviderInterface) *ProviderService {
+func NewProviderService(provider ProviderInterface) *ProviderService {
 	return &ProviderService{
-		api: api,
+		provider: provider,
 	}
 }

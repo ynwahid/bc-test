@@ -1,6 +1,6 @@
-package api
+package provider
 
-type APIRepository struct{}
+type ProviderRepository struct{}
 
 type AirAsiaResponse struct {
 	Status  string `json:"status"`

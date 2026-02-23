@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/ynwahid/bc-test/internal/entity"
-	"github.com/ynwahid/bc-test/internal/repository/api"
+	"github.com/ynwahid/bc-test/internal/repository/provider"
 )
 
 const (
@@ -16,7 +16,7 @@ const (
 )
 
 func (p *ProviderService) GetAirAsiaFlights(ctx context.Context, origin, destination, departureDate string) ([]entity.Flight, error) {
-	res, err := p.api.GetAirAsiaFlights(ctx, origin, destination, departureDate)
+	res, err := p.provider.GetAirAsiaFlights(ctx, origin, destination, departureDate)
 	if err != nil {
 		return []entity.Flight{}, err
 	}
@@ -24,7 +24,7 @@ func (p *ProviderService) GetAirAsiaFlights(ctx context.Context, origin, destina
 }
 
 func (p *ProviderService) GetBatikAirFlights(ctx context.Context, origin, destination, departureDate string) ([]entity.Flight, error) {
-	res, err := p.api.GetBatikAirFlights(ctx, origin, destination, departureDate)
+	res, err := p.provider.GetBatikAirFlights(ctx, origin, destination, departureDate)
 	if err != nil {
 		return []entity.Flight{}, err
 	}
@@ -32,7 +32,7 @@ func (p *ProviderService) GetBatikAirFlights(ctx context.Context, origin, destin
 }
 
 func (p *ProviderService) GetGarudaIndonesiaFlights(ctx context.Context, origin, destination, departureDate string) ([]entity.Flight, error) {
-	res, err := p.api.GetGarudaIndonesiaFlights(ctx, origin, destination, departureDate)
+	res, err := p.provider.GetGarudaIndonesiaFlights(ctx, origin, destination, departureDate)
 	if err != nil {
 		return []entity.Flight{}, err
 	}
@@ -40,14 +40,14 @@ func (p *ProviderService) GetGarudaIndonesiaFlights(ctx context.Context, origin,
 }
 
 func (p *ProviderService) GetLionAirFlights(ctx context.Context, origin, destination, departureDate string) ([]entity.Flight, error) {
-	res, err := p.api.GetLionAirFlights(ctx, origin, destination, departureDate)
+	res, err := p.provider.GetLionAirFlights(ctx, origin, destination, departureDate)
 	if err != nil {
 		return []entity.Flight{}, err
 	}
 	return p.transformLionAirResponseToFlights(res)
 }
 
-func (p *ProviderService) transformAirAsiaResponseToFlights(response api.AirAsiaResponse) ([]entity.Flight, error) {
+func (p *ProviderService) transformAirAsiaResponseToFlights(response provider.AirAsiaResponse) ([]entity.Flight, error) {
 	flights := make([]entity.Flight, len(response.Flights))
 
 	for i, flight := range response.Flights {
@@ -112,7 +112,7 @@ func (p *ProviderService) transformAirAsiaResponseToFlights(response api.AirAsia
 	return flights, nil
 }
 
-func (p *ProviderService) transformBatikAirResponseToFlights(response api.BatikAirResponse) ([]entity.Flight, error) {
+func (p *ProviderService) transformBatikAirResponseToFlights(response provider.BatikAirResponse) ([]entity.Flight, error) {
 	flights := make([]entity.Flight, len(response.Results))
 
 	for i, flight := range response.Results {
@@ -181,7 +181,7 @@ func (p *ProviderService) transformBatikAirResponseToFlights(response api.BatikA
 	return flights, nil
 }
 
-func (p *ProviderService) transformGarudaIndonesiaResponseToFlights(response api.GarudaIndonesiaResponse) ([]entity.Flight, error) {
+func (p *ProviderService) transformGarudaIndonesiaResponseToFlights(response provider.GarudaIndonesiaResponse) ([]entity.Flight, error) {
 	flights := make([]entity.Flight, len(response.Flights))
 
 	for i, flight := range response.Flights {
@@ -244,7 +244,7 @@ func (p *ProviderService) transformGarudaIndonesiaResponseToFlights(response api
 	return flights, nil
 }
 
-func (p *ProviderService) transformLionAirResponseToFlights(response api.LionAirResponse) ([]entity.Flight, error) {
+func (p *ProviderService) transformLionAirResponseToFlights(response provider.LionAirResponse) ([]entity.Flight, error) {
 	flights := make([]entity.Flight, len(response.Data.AvailableFlights))
 
 	for i, flight := range response.Data.AvailableFlights {
