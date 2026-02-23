@@ -13,6 +13,6 @@ type ProviderInterface interface {
 	GetLionAirFlights(ctx context.Context, origin, destination, departureDate string) (provider.LionAirResponse, error)
 }
 
-type ProviderService struct {
+type AggregationService struct {
 	provider ProviderInterface
 }

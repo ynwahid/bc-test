@@ -15,39 +15,39 @@ const (
 	timeLayoutLionAir = `2006-01-02T15:04:05`
 )
 
-func (p *ProviderService) GetAirAsiaFlights(ctx context.Context, origin, destination, departureDate string) ([]entity.Flight, error) {
-	res, err := p.provider.GetAirAsiaFlights(ctx, origin, destination, departureDate)
+func (a *AggregationService) GetAirAsiaFlights(ctx context.Context, origin, destination, departureDate string) ([]entity.Flight, error) {
+	res, err := a.provider.GetAirAsiaFlights(ctx, origin, destination, departureDate)
 	if err != nil {
 		return []entity.Flight{}, err
 	}
-	return p.transformAirAsiaResponseToFlights(res)
+	return a.transformAirAsiaResponseToFlights(res)
 }
 
-func (p *ProviderService) GetBatikAirFlights(ctx context.Context, origin, destination, departureDate string) ([]entity.Flight, error) {
-	res, err := p.provider.GetBatikAirFlights(ctx, origin, destination, departureDate)
+func (a *AggregationService) GetBatikAirFlights(ctx context.Context, origin, destination, departureDate string) ([]entity.Flight, error) {
+	res, err := a.provider.GetBatikAirFlights(ctx, origin, destination, departureDate)
 	if err != nil {
 		return []entity.Flight{}, err
 	}
-	return p.transformBatikAirResponseToFlights(res)
+	return a.transformBatikAirResponseToFlights(res)
 }
 
-func (p *ProviderService) GetGarudaIndonesiaFlights(ctx context.Context, origin, destination, departureDate string) ([]entity.Flight, error) {
-	res, err := p.provider.GetGarudaIndonesiaFlights(ctx, origin, destination, departureDate)
+func (a *AggregationService) GetGarudaIndonesiaFlights(ctx context.Context, origin, destination, departureDate string) ([]entity.Flight, error) {
+	res, err := a.provider.GetGarudaIndonesiaFlights(ctx, origin, destination, departureDate)
 	if err != nil {
 		return []entity.Flight{}, err
 	}
-	return p.transformGarudaIndonesiaResponseToFlights(res)
+	return a.transformGarudaIndonesiaResponseToFlights(res)
 }
 
-func (p *ProviderService) GetLionAirFlights(ctx context.Context, origin, destination, departureDate string) ([]entity.Flight, error) {
-	res, err := p.provider.GetLionAirFlights(ctx, origin, destination, departureDate)
+func (a *AggregationService) GetLionAirFlights(ctx context.Context, origin, destination, departureDate string) ([]entity.Flight, error) {
+	res, err := a.provider.GetLionAirFlights(ctx, origin, destination, departureDate)
 	if err != nil {
 		return []entity.Flight{}, err
 	}
-	return p.transformLionAirResponseToFlights(res)
+	return a.transformLionAirResponseToFlights(res)
 }
 
-func (p *ProviderService) transformAirAsiaResponseToFlights(response provider.AirAsiaResponse) ([]entity.Flight, error) {
+func (a *AggregationService) transformAirAsiaResponseToFlights(response provider.AirAsiaResponse) ([]entity.Flight, error) {
 	flights := make([]entity.Flight, len(response.Flights))
 
 	for i, flight := range response.Flights {
@@ -112,7 +112,7 @@ func (p *ProviderService) transformAirAsiaResponseToFlights(response provider.Ai
 	return flights, nil
 }
 
-func (p *ProviderService) transformBatikAirResponseToFlights(response provider.BatikAirResponse) ([]entity.Flight, error) {
+func (a *AggregationService) transformBatikAirResponseToFlights(response provider.BatikAirResponse) ([]entity.Flight, error) {
 	flights := make([]entity.Flight, len(response.Results))
 
 	for i, flight := range response.Results {
@@ -181,7 +181,7 @@ func (p *ProviderService) transformBatikAirResponseToFlights(response provider.B
 	return flights, nil
 }
 
-func (p *ProviderService) transformGarudaIndonesiaResponseToFlights(response provider.GarudaIndonesiaResponse) ([]entity.Flight, error) {
+func (a *AggregationService) transformGarudaIndonesiaResponseToFlights(response provider.GarudaIndonesiaResponse) ([]entity.Flight, error) {
 	flights := make([]entity.Flight, len(response.Flights))
 
 	for i, flight := range response.Flights {
@@ -244,7 +244,7 @@ func (p *ProviderService) transformGarudaIndonesiaResponseToFlights(response pro
 	return flights, nil
 }
 
-func (p *ProviderService) transformLionAirResponseToFlights(response provider.LionAirResponse) ([]entity.Flight, error) {
+func (a *AggregationService) transformLionAirResponseToFlights(response provider.LionAirResponse) ([]entity.Flight, error) {
 	flights := make([]entity.Flight, len(response.Data.AvailableFlights))
 
 	for i, flight := range response.Data.AvailableFlights {

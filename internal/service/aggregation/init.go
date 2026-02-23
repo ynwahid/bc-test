@@ -1,7 +1,7 @@
 package aggregation
 
-func NewProviderService(provider ProviderInterface) *ProviderService {
-	return &ProviderService{
+func NewAggregationService(provider ProviderInterface) *AggregationService {
+	return &AggregationService{
 		provider: provider,
 	}
 }
